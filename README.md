@@ -68,9 +68,6 @@ export default defineConfig([
     - `public/` — static assets (profile image, resume PDF)
     - `tailwind.config.ts`, `vite.config.ts` — build / styling configs
 
-    ## Resume & assets
-    - Place your resume at `public/bharathi_r_resume.pdf` (or update the resume link in `Hero.tsx`).
-
     ## Notes
     - Theme is class-based: toggling adds/removes the `dark` class on the document root.
     - If you encounter build errors, run `npm run dev` and check the terminal for TypeScript/TSX parser errors introduced by malformed JSX.
