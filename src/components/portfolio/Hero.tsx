@@ -15,7 +15,7 @@ const Hero = () => {
             y: [0, -50, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+          className="absolute top-1/4 left-[30%] w-96 h-96 bg-primary/20 rounded-full blur-3xl"
         />
         <motion.div
           animate={{ 
@@ -37,7 +37,22 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container mx-auto px-6 text-center">
+      <div className="container mx-auto px-6">
+        <div className="w-full flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-12">
+          {/* Left: Image */}
+          <div className="w-full md:w-1/2 flex justify-center md:justify-center md:pl-0">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="rounded-full overflow-hidden w-48 h-48 md:w-72 md:h-72 ring-2 ring-white/10"
+            >
+              <img src="/profile.jpg" alt="Profile" className="w-full h-full object-cover" />
+            </motion.div>
+          </div>
+
+          {/* Right: Text */}
+          <div className="w-full md:w-1/2 text-center md:text-left">
         {/* Greeting */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -53,7 +68,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
+          className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
         >
           <span className="gradient-text">Bharathi Ranga</span>
         </motion.h1>
@@ -69,7 +84,7 @@ const Hero = () => {
             Frontend Web Developer
           </h2>
           <p className="text-muted-foreground/70 mt-2 font-mono text-sm">
-            6+ years of crafting digital experiences
+            6+ years of developer experience
           </p>
         </motion.div>
 
@@ -78,9 +93,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-2xl mx-auto text-muted-foreground text-base md:text-lg mb-10 text-balance"
+          className="max-w-2xl mx-auto md:mx-0 text-muted-foreground text-base md:text-lg mb-10 text-balance"
         >
-          Specializing in React.js, Next.js, and TypeScript. Building responsive, 
+          Specializing in JavaScript, React.js, Next.js, Node.js and TypeScript. Building responsive, 
           scalable, and high-performance web applications with a passion for 
           exceptional user experiences.
         </motion.p>
@@ -90,12 +105,12 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex items-center justify-center gap-4 mb-12"
+          className="flex items-center md:justify-start justify-center gap-4 mb-12"
         >
           {[
-            { icon: Github, href: "https://github.com", label: "GitHub" },
-            { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-            { icon: Mail, href: "mailto:bharathi@example.com", label: "Email" },
+            { icon: Github, href: "https://github.com/bharathi-ranga", label: "GitHub" },
+            { icon: Linkedin, href: "https://www.linkedin.com/in/bharathi-ranga", label: "LinkedIn" },
+            { icon: Mail, href: "mailto:ranga.bharathisri@gmail.com", label: "Email" },
           ].map((social) => (
             <motion.a
               key={social.label}
@@ -116,25 +131,29 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center md:justify-start justify-center gap-4"
         >
           <motion.a
-            href="#projects"
+            href="#experience"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="px-8 py-3 bg-primary text-primary-foreground font-medium rounded-lg glow transition-all duration-300"
+            className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-medium rounded-lg glow transition-all duration-300 whitespace-nowrap"
           >
             View My Work
           </motion.a>
           <motion.a
-            href="#contact"
+            href="/bharathi_r_resume.pdf"
+            download
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="px-8 py-3 glass font-medium rounded-lg gradient-border transition-all duration-300"
+            className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white font-medium rounded-lg transition-all duration-300 whitespace-nowrap"
+            aria-label="Download resume"
           >
-            Get In Touch
+            Download Resume
           </motion.a>
         </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Scroll Indicator */}

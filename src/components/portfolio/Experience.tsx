@@ -7,7 +7,7 @@ const experiences = [
   {
     company: "Publicis Sapient",
     client: "Goldman Sachs",
-    role: "Web Developer",
+    role: "Interactive Web Developer",
     location: "Hyderabad, India",
     period: "January 2022 – December 2024",
     description: [
@@ -39,7 +39,7 @@ const Experience = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" className="py-24 md:py-32 relative">
+    <section id="experience" className="py-12 md:py-16 relative">
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
@@ -58,7 +58,7 @@ const Experience = () => {
 
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-1/2" />
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-border" />
 
           {experiences.map((exp, index) => (
             <motion.div
@@ -66,15 +66,13 @@ const Experience = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className={`relative flex flex-col md:flex-row gap-8 mb-12 ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
+              className="relative flex flex-col md:flex-row gap-6 mb-8"
             >
               {/* Timeline Dot */}
-              <div className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-primary glow -translate-x-1/2 mt-8 z-10" />
+              <div className="absolute left-4 w-4 h-4 rounded-full bg-primary glow mt-8 z-10" />
 
               {/* Content Card */}
-              <div className={`flex-1 ml-8 md:ml-0 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"}`}>
+              <div className="flex-1 ml-12 md:ml-12">
                 <motion.div
                   whileHover={{ y: -5 }}
                   className="p-6 rounded-xl glass glow-sm"
@@ -84,15 +82,15 @@ const Experience = () => {
                       <Building2 className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-display font-bold text-lg">{exp.role}</h3>
-                      <p className="text-primary font-medium">
+                      <h3 className="font-display font-bold text-xl md:text-2xl">{exp.role}</h3>
+                      <p className="text-primary font-semibold text-base md:text-lg">
                         {exp.company}
                         {exp.client && <span className="text-muted-foreground"> • {exp.client}</span>}
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
+                  <div className="flex flex-wrap gap-4 text-sm md:text-base text-muted-foreground mb-4">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
                       {exp.period}
@@ -102,11 +100,10 @@ const Experience = () => {
                       {exp.location}
                     </span>
                   </div>
-
                   <ul className="space-y-2 mb-4">
                     {exp.description.map((item, i) => (
-                      <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <li key={i} className="text-base md:text-base text-muted-foreground flex items-start gap-2">
+                        <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -116,7 +113,7 @@ const Experience = () => {
                     {exp.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 rounded-full bg-primary/10 text-xs font-mono text-primary"
+                        className="px-3 py-1 rounded-full bg-primary/10 text-sm font-mono text-primary"
                       >
                         {tech}
                       </span>
@@ -124,9 +121,6 @@ const Experience = () => {
                   </div>
                 </motion.div>
               </div>
-
-              {/* Empty space for timeline alignment */}
-              <div className="hidden md:block flex-1" />
             </motion.div>
           ))}
         </div>

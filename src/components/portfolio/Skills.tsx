@@ -54,22 +54,22 @@ const Skills = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="py-24 md:py-32 bg-secondary/30 relative">
+    <section id="skills" className="py-8 md:py-12 bg-secondary/30 relative">
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <span className="inline-block px-4 py-1.5 rounded-full glass text-xs font-mono text-primary mb-6">
             Technical Skills
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold">
+          <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-bold">
             My <span className="gradient-text">Tech Stack</span>
           </h2>
-        </motion.div>
+          </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {skillCategories.map((category, categoryIndex) => (
@@ -92,19 +92,22 @@ const Skills = () => {
                     transition={{ duration: 0.4, delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-xs text-muted-foreground font-mono">{skill.level}%</span>
+                      <span className="text-lg md:text-xl font-display font-semibold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:text-foreground dark:bg-none">{skill.name}</span>
+                      <span className="text-xs md:text-sm text-slate-500 dark:text-muted-foreground font-mono">{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div className="h-3 md:h-4 bg-muted/30 rounded-full overflow-hidden border border-muted/20">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.level}%` } : {}}
                         transition={{ duration: 1, delay: categoryIndex * 0.1 + skillIndex * 0.05, ease: "easeOut" }}
-                        className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
+                        className="h-full rounded-full bg-primary/40"
                       />
                     </div>
                   </motion.div>
                 ))}
+              </div>
+              <div className="mt-4">
+                <div className="section-shadow rounded-b-xl" aria-hidden />
               </div>
             </motion.div>
           ))}
@@ -115,9 +118,9 @@ const Skills = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-16 flex flex-wrap justify-center gap-4"
+          className="mt-12 flex flex-wrap justify-center gap-4"
         >
-          {["React", "Next.js", "TypeScript", "Node.js", "GraphQL", "MongoDB", "Docker", "Git"].map((tech, index) => (
+          {["React", "Next.js", "TypeScript", "Node.js", "GraphQL", "MongoDB", "Docker", "Git"].map((tech) => (
             <motion.span
               key={tech}
               whileHover={{ scale: 1.05, y: -2 }}

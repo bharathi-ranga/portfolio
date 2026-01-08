@@ -1,164 +1,97 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import ProjectCard from "./Project";
+import { TrendingUp, ShoppingCart, Wallet, BarChart3, Layout } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github, TrendingUp, ShoppingCart, Wallet, BarChart3, Layout } from "lucide-react";
 
 const projects = [
-  {
-    title: "Stock Market Visualization Tool",
-    description: "Real-time stock market application with dynamic charts and live data integration. Features responsive layouts and seamless cross-device functionality.",
-    icon: TrendingUp,
-    technologies: ["React.js", "JavaScript", "Chart.js", "RESTful APIs", "CSS3"],
-    highlights: ["Real-time data updates", "Dynamic charting", "Responsive design"],
-    type: "Professional",
-  },
-  {
-    title: "Product Selling Application",
-    description: "Full-featured eCommerce platform with dynamic content management, real-time inventory updates, and pixel-perfect responsive interfaces.",
-    icon: ShoppingCart,
-    technologies: ["React.js", "Next.js", "Redux", "Storyblok CMS", "RESTful APIs"],
-    highlights: ["CMS integration", "State management", "SEO optimized"],
-    type: "Professional",
-  },
-  {
-    title: "Expense Tracker Application",
-    description: "Full-stack expense tracking solution with responsive dashboards, dynamic charts, and comprehensive data management.",
-    icon: Wallet,
-    technologies: ["React.js", "Node.js", "Express.js", "MongoDB"],
-    highlights: ["Full-stack", "Data visualization", "CRUD operations"],
-    type: "Personal",
-  },
-  {
-    title: "GraphQL Data Dashboard",
-    description: "React interface integrating GraphQL APIs for optimized data fetching, filtering, and real-time visualization.",
-    icon: BarChart3,
-    technologies: ["React.js", "GraphQL", "TypeScript", "CSS3"],
-    highlights: ["GraphQL integration", "Optimized queries", "Data visualization"],
-    type: "Personal",
-  },
-  {
-    title: "Next.js SPA Portfolio",
-    description: "Server-side rendered portfolio with REST API integration, SEO best practices, and responsive design throughout.",
-    icon: Layout,
-    technologies: ["Next.js", "TypeScript", "RESTful APIs", "CSS3"],
-    highlights: ["SSR/SSG", "SEO optimized", "Performance focused"],
-    type: "Personal",
-  },
+	{
+		title: "Goldman Sachs — Financial UI",
+        company: "Publicis Sapient | Web Developer",
+        duration:"January 2022 – December 2024",
+		description: `\nDeveloped secure, enterprise-grade financial web applications using React.js, Redux, and JavaScript, delivering responsive, high-performance interfaces.\n\u2022 Implemented reusable UI components, optimized rendering performance, and improved page load speed for data-intensive applications.\n\u2022 Integrated RESTful APIs and microservices-driven backends for dynamic data fetching and real-time updates.\n\u2022 Practiced test-driven development (TDD), automated testing, and CI/CD workflows, ensuring high code quality and deployment reliability.\n\u2022 Mentored junior developers, conducted code reviews, and contributed to team knowledge-sharing initiatives.\n\u2022 Owned the development of React-based UI features, making architectural decisions around component structure, state management, and data-fetching patterns.\n\u2022 Debugged and resolved UI issues across browsers and devices in collaboration with QA and product teams, ensuring reliability and usability.\n\u2022 Contributed to frontend testing efforts, including unit and integration testing, to maintain long-term code quality and stability.`,
+		icon: TrendingUp,
+		technologies: [
+			"React.js",
+			"Next.js (App Router)",
+			"Redux",
+			"Ag-Grid",
+			"TypeScript",
+			"JavaScript (ES6+)",
+			"Node.js",
+			"Express.js",
+			"MongoDB",
+			"RESTful APIs",
+			"HTML5",
+			"CSS3",
+			"GitHub Actions",
+		],
+		type: "Professional",
+	},
+	{
+		title: "Stock Market Visualization Tool",
+        company: "Infosys Limited",
+        duration:"July 2018 – December 2021",
+		description: `Built a real-time stock market application using React.js and JavaScript, implementing dynamic charts with Chart.js and integrating external APIs for live data.\n\u2022 Designed modular components and responsive layouts ensuring seamless functionality across devices.\n\u2022 Optimized UI responsiveness using CSS Flexbox and Grid, ensuring seamless functionality across desktop and mobile platforms.\n\u2022 Deployed the application on Netlify, ensuring smooth access and performance for end users.`,
+		icon: BarChart3,
+		technologies: ["React.js", "JavaScript (ES6+)", "Chart.js", "HTML5", "CSS3", "RESTful APIs"],
+		type: "Professional",
+	},
+	{
+		title: "Ecommerce Application",
+        company: "Infosys Limited",
+        duration:"July 2018 – December 2021",
+		description: `Led front-end development using React.js, Next.js, Redux, and Storyblok CMS, enabling dynamic content management for eCommerce workflows.\n\u2022 Designed reusable, modular components and implemented advanced state management for seamless user interactions.\n\u2022 Integrated RESTful APIs, managed authentication, and maintained real-time inventory updates.\n\u2022 Collaborated with UI/UX teams to create pixel-perfect, responsive, and accessible interfaces.\n\u2022 Mentored junior developers and established best practices for scalable front-end architecture.\n\u2022 Optimized frontend performance and SEO using Next.js server-side rendering and efficient component rendering strategies.`,
+		icon: ShoppingCart,
+		technologies: ["React.js", "Next.js", "Redux", "Storyblok CMS", "RESTful APIs", "Chart.js", "Netlify"],
+		type: "Professional",
+	},
+	{
+		title: "Next.js SPA Portfolio",
+		description: "Built a Next.js SPA with server-side rendering and REST API integration. Implemented SEO best practices and responsive design.",
+		icon: Layout,
+		technologies: ["Next.js (App Router)", "TypeScript", "RESTful APIs", "CSS3"],
+		type: "Personal",
+	},
+	{
+		title: "Expense Tracker Application",
+		description: "Developed React frontend with Node.js/Express backend and MongoDB storage, featuring responsive dashboards and dynamic charts.",
+		icon: Wallet,
+		technologies: ["React.js", "Node.js", "Express.js", "MongoDB"],
+		type: "Personal",
+	},
+	{
+		title: "GraphQL Data Dashboard",
+		description: "Built a React interface integrating GraphQL APIs for optimized data fetching and visualization.",
+		icon: BarChart3,
+		technologies: ["React.js", "GraphQL", "TypeScript", "CSS3"],
+		type: "Personal",
+	},
 ];
 
-const Projects = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+export default function Projects() {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  return (
-    <section id="projects" className="py-24 md:py-32 bg-secondary/30 relative">
-      <div className="container mx-auto px-6">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block px-4 py-1.5 rounded-full glass text-xs font-mono text-primary mb-6">
-            Featured Work
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold">
-            My <span className="gradient-text">Projects</span>
-          </h2>
-        </motion.div>
+	return (
+		<section id="projects" className="py-12 md:py-16 bg-secondary/30 relative">
+			<div className="container mx-auto px-6">
+				<motion.div
+					ref={ref}
+					initial={{ opacity: 0, y: 30 }}
+					animate={isInView ? { opacity: 1, y: 0 } : {}}
+					transition={{ duration: 0.6 }}
+					className="text-center mb-12"
+				>
+					<span className="inline-block px-4 py-1.5 rounded-full glass text-xs font-mono text-primary mb-6">Featured Work</span>
+					<h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold">My <span className="gradient-text">Projects</span></h2>
+				</motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="group relative p-6 rounded-xl glass glow-sm overflow-hidden"
-            >
-              {/* Type Badge */}
-              <span className={`absolute top-4 right-4 px-2 py-1 rounded-full text-xs font-mono ${
-                project.type === "Professional" 
-                  ? "bg-primary/20 text-primary" 
-                  : "bg-accent/20 text-accent"
-              }`}>
-                {project.type}
-              </span>
-
-              {/* Icon */}
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <project.icon className="w-7 h-7 text-primary" />
-              </div>
-
-              {/* Title & Description */}
-              <h3 className="font-display font-bold text-lg mb-3 group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                {project.description}
-              </p>
-
-              {/* Highlights */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.highlights.map((highlight) => (
-                  <span
-                    key={highlight}
-                    className="text-xs text-muted-foreground"
-                  >
-                    • {highlight}
-                  </span>
-                ))}
-              </div>
-
-              {/* Technologies */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.slice(0, 3).map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 rounded-md bg-muted text-xs font-mono"
-                  >
-                    {tech}
-                  </span>
-                ))}
-                {project.technologies.length > 3 && (
-                  <span className="px-2 py-1 rounded-md bg-muted text-xs font-mono text-muted-foreground">
-                    +{project.technologies.length - 3}
-                  </span>
-                )}
-              </div>
-
-              {/* Links */}
-              <div className="flex gap-3 pt-4 border-t border-border">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Github className="w-4 h-4" />
-                  Code
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Demo
-                </motion.button>
-              </div>
-
-              {/* Hover Glow Effect */}
-              <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5" />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Projects;
+				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+					{projects.map((p) => (
+						<ProjectCard key={p.title} project={p as any} />
+					))}
+				</div>
+			</div>
+		</section>
+	);
+}

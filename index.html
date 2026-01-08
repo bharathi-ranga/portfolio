@@ -19,6 +19,16 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <script>
+      // Always default to dark until the user toggles to light during the session.
+      (function () {
+        try {
+          document.documentElement.classList.add('dark');
+        } catch (e) {
+          // ignore
+        }
+      })();
+    </script>
   </head>
 
   <body>

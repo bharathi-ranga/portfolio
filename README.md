@@ -19,55 +19,64 @@ If you are developing a production application, we recommend updating the config
 export default defineConfig([
   globalIgnores(['dist']),
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+    # My Portfolio
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+    A responsive personal portfolio built with React, Vite, TypeScript and Tailwind CSS.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    ## Features
+    - Theme toggle (light / dark) with preference persistence
+    - Projects grid with professional and personal projects (flip-on-hover for professional projects)
+    - Skills with progress indicators and tech badges
+    - Experience timeline, Education, and About / Summary sections
+    - Resume download and contact links
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+    ## Built with
+    - React + Vite + TypeScript
+    - Tailwind CSS for utility-first styling
+    - Framer Motion for subtle animations
+    - lucide-react for icons
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+    ## Quick Start
+    1. Install dependencies
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    ```bash
+    npm install
+    ```
+
+    2. Run development server
+
+    ```bash
+    npm run dev
+    ```
+
+    3. Build for production
+
+    ```bash
+    npm run build
+    ```
+
+    4. Preview production build
+
+    ```bash
+    npm run preview
+    ```
+
+    ## Project Structure (important files)
+    - `src/main.tsx` — app entry
+    - `src/App.tsx` — top-level layout
+    - `src/components/portfolio` — sections: `Hero`, `Projects`, `Skills`, `Experience`, `Education`, `About`, `Navigation`
+    - `public/` — static assets (profile image, resume PDF)
+    - `tailwind.config.ts`, `vite.config.ts` — build / styling configs
+
+    ## Resume & assets
+    - Place your resume at `public/bharathi_r_resume.pdf` (or update the resume link in `Hero.tsx`).
+
+    ## Notes
+    - Theme is class-based: toggling adds/removes the `dark` class on the document root.
+    - If you encounter build errors, run `npm run dev` and check the terminal for TypeScript/TSX parser errors introduced by malformed JSX.
+
+    ## Contact
+    - Email: ranga.bharathisri@gmail.com
+
+    ## License
+    - This repository is provided as-is. Add a license if you plan to open-source it.

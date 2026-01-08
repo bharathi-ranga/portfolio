@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 
 const navItems = [
   { label: "About", href: "#about" },
@@ -14,6 +14,7 @@ const navItems = [
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,16 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDark]);
 
   return (
     <motion.nav
@@ -35,7 +46,7 @@ const Navigation = () => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <motion.a
           href="#"
-          className="font-display text-xl font-bold gradient-text"
+          className="font-display text-2xl md:text-3xl font-bold gradient-text tracking-wide"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -43,7 +54,7 @@ const Navigation = () => {
         </motion.a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navItems.map((item, index) => (
             <motion.a
               key={item.href}
@@ -51,12 +62,20 @@ const Navigation = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors relative group"
+              className="text-base md:text-lg font-semibold text-muted-foreground hover:text-primary transition-colors relative group tracking-wide"
             >
               {item.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
             </motion.a>
           ))}
+          <button
+            onClick={() => setIsDark((s) => !s)}
+            className="ml-4 p-2 rounded-full border border-muted/20 text-foreground hover:bg-muted/10 transition-colors"
+            aria-label="Toggle theme"
+            title="Toggle theme"
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -83,11 +102,20 @@ const Navigation = () => {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                  className="text-base font-semibold text-muted-foreground hover:text-primary transition-colors"
                 >
                   {item.label}
                 </a>
               ))}
+              <div className="pt-2 border-t border-muted/20">
+                <button
+                  onClick={() => setIsDark((s) => !s)}
+                  className="w-full flex items-center justify-center gap-2 py-2 rounded-md text-muted-foreground hover:text-primary"
+                >
+                  {isDark ? <Sun size={16} /> : <Moon size={16} />}
+                  <span className="font-medium">Toggle Theme</span>
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
