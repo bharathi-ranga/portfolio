@@ -7,7 +7,7 @@ import Projects from "../components/portfolio/Projects";
 import Education from "../components/portfolio/Education";
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background px-4 md:px-6">
       <Navigation />
       <Hero />
       <About />
